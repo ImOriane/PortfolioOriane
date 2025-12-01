@@ -1,0 +1,11 @@
+.bg {
+  background-image: url("../documents/fond.jpg");
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  opacity: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* L'img background ne bouge pas au scroll/zomm... */
+}

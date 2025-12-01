@@ -1,0 +1,1489 @@
+/* Reset default css des navigateurs */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/***********************************************************************************/
+
+/* Création de variable couleurs */
+:root {
+  --couleur_principale: #ab19ff;
+  --couleur_secondaire: #ffffff;
+    --glow-primary: rgba(56, 189, 248, 0.7);
+    --glow-secondary: rgba(94, 234, 212, 0.6);
+    --neon-pink: rgba(236, 72, 153, 0.8);
+    --neon-blue: rgba(59, 130, 246, 0.8);
+    --neon-green: rgba(16, 185, 129, 0.8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #0d0f2f;
+}
+main {
+    clear: both;
+}
+
+
+/*Toutes les animations*/
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0px;
+    }
+    to {
+        width: 140px;
+    }
+}
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 50%;
+        opacity: 0.3;
+    }
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.5;
+    }
+    100% {
+        background-position: 0% 50%;
+        opacity: 0.3;
+    }
+}
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--couleur_secondaire);
+    }
+}
+
+
+@keyframes apparition {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slide_gauche {
+    0% {/* L'objet appelé par l'animation commence invisible  et plus loin sur l'axe X que son origine. */
+        transform: translateX(500px);
+        opacity: 0;
+    }
+    17% {/*Transition: commence à rendre l’objet visible. La propriété translateX continue de bouger jusqu’à atteindre
+         automatiquement 0px à 100%.*/
+        opacity: 0.2;
+    }
+    24% {
+        opacity: 0.4;
+    }
+    46% {
+        opacity: 0.6;
+    }
+    100% {/*État final de l'animation : l'objet est désormais à sa position prédéfinie sur l'axe X et complètement visible.*/
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+
+@keyframes bgfadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes bgfadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.bgfadeOut {
+  -webkit-animation: bgfadeOut 1s forwards;
+  -moz-animation: bgfadeOut 1s forwards;
+  -o-animatio: bgfadeOut 1s forwards;
+  animation: bgfadeOut 1s forwards;
+}
+
+.bgfadeIn {
+  -webkit-animation: bgfadeIn 1s forwards;
+  -moz-animation: bgfadeIn 1s forwards;
+  -o-animatio: bgfadeIn 1s forwards;
+  animation: bgfadeIn 1s forwards;
+}
+
+
+
+header {
+  /*police des catégories dans le menu, et leurs positions sur la page + espacement entre chaque catégories */
+  font-family: Arial, sans-serif;
+  padding-top: 35px;
+}
+header .credit a {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.2rem;
+  font-size: 40px;
+  color: var(--couleur_secondaire);
+  text-decoration: none;
+}
+header .credit a:hover {
+  color: var(--couleur_principale);
+  transition: all 0.3s; /* durée d'animation pour passer de l'état non survolé à survolé */
+}
+
+header .left {
+  margin-left: 2.5%;
+  float: left;
+}
+header .right {
+  margin-right: 2.5%;
+  float: right;
+}
+
+header hr {
+  width: 95%;
+  margin: 55px auto;
+}
+
+nav ul li {
+  /*met en ligne les catégories du menu*/
+  display: inline;
+  margin: 0 30px;
+}
+
+nav ul li .numerotation {
+  /*couleurs des catégorie empeche d'avoir un souligement + gras */
+  font-size: 25px;
+  color: var(--couleur_principale);
+  font-weight: bold;
+}
+nav ul li a {
+  /*couleurs des catégorie empeche d'avoir un souligement + gras */
+  font-size: 20px;
+  color: var(--couleur_secondaire);
+  text-decoration: none;
+}
+nav ul li a:hover {
+  /* :hover = Propriété lors du survol d'un à la souris */
+  font-size: 22px;
+  font-weight: bold;
+  transition: all 0.3s; /* durée d'animation pour passer de l'état non survolé à survolé */
+}
+
+/***********************************************************************************/
+
+/* Contenu page d'accueil */
+.content {
+  padding: 9% 0 0 5%;
+}
+.hero {
+  width: 40%;
+  text-align: center;
+}
+.hero h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-size: 130px;
+  color: var(--couleur_principale);
+  opacity: 0;
+  -webkit-animation: 1s slide_gauche 1s forwards;
+  -moz-animation: 1s slide_gauche 1s forwards;
+  -o-animation: 1s slide_gauche 1s forwards;
+  animation: 1s slide_gauche 1s forwards; /* appel de l'animation declarer en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
+}
+
+.hero h2 {
+  width: 140px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 40px;
+  color: var(--couleur_secondaire);
+  overflow: hidden; /
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.1em; /* Adjust as needed */
+  animation: typing 1s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+.hero h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  color: var(--couleur_secondaire);
+  opacity: 0;
+  animation: 1s apparition 1s forwards;
+}
+
+/***********************************************************************************/
+/*Contenu de la page veille*/
+.veillete h1{
+    position:absolute;
+    top: 200px;
+    left: 580px;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 130px;
+    color:var(--couleur_principale);
+    -webkit-animation: slide_gauche 1.5s forwards;
+    -moz-animation: slide_gauche 1.5s forwards;
+    -o-animation: slide_gauche 1.5s forwards;
+    animation: slide_gauche 1.5s  forwards;
+}
+
+
+.veillete h2{
+    font-family: "Poppins", sans-serif;
+    font-style: bold;
+    font-weight: 400;
+    font-size: 50px;
+    color: var(--couleur_principale);
+    opacity: 0;
+    animation: 1s apparition 1s forwards;
+
+}
+
+.veillete h4{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    color: var(--couleur_principale);
+    opacity: 0;
+    animation: 1s apparition 1s forwards;
+
+}
+.veillete h3{
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-size: 50px;
+    color: var(--couleur_secondaire);
+    opacity: 0;
+    animation: 1s apparition 1s forwards;
+
+}
+
+
+
+/***********************************************************************************/
+/*Contenu de la page tableau*/
+
+.tableau h1{
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    margin-top: -100px;
+    font-weight: 400;
+    font-size: 130px;
+    color: var(--couleur_principale);
+    opacity: 0;
+    -webkit-animation:  slide_gauche 1s forwards;
+    -moz-animation: slide_gauche 1s forwards;
+    -o-animation:  slide_gauche 1s forwards;
+    animation: slide_gauche 1s forwards; /* appel de l'animation declarer en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
+
+}
+
+.imagtab img{
+
+    text-align: center;
+    width: 50%;
+}
+
+
+.imagtab {
+
+    text-align: center;
+
+}
+
+/***********************************************************************************/
+/*Contenu page à propos*/
+
+.presentation {
+  display: flex;
+   padding-top: 70px;
+    padding-left: 70px;
+}
+
+
+.col{
+    flex:1;
+    padding-left: 130px;
+
+}
+.present h1{
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 130px;
+    color:var(--couleur_principale);
+    left:500px;
+    -webkit-animation: slide_gauche 1.5s forwards;
+    -moz-animation: slide_gauche 1.5s forwards;
+    -o-animation: slide_gauche 1.5s forwards;
+    animation: slide_gauche 1.5s  forwards;
+}
+
+.present h2{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+    color:var(--couleur_secondaire);
+    -webkit-animation:fade 2s forwards;
+    -moz-animation: fade 2s forwards;
+    -o-animation: fade 2s forwards;
+    animation: fade 2s  forwards;
+
+}
+
+.avatar img {
+    width: 60%;
+    left:600px;
+    -webkit-animation:fade 2s forwards;
+    -moz-animation: fade 2s forwards;
+    -o-animation: fade 2s forwards;
+    animation: fade 2s  forwards;
+}
+
+
+.bouton {
+    text-align: center;
+    margin-top: 40px;
+}
+.myButton {
+    background:linear-gradient(to left, #8042FE 5%, #AA31FD  100%);
+    background-color:#AA31FD ;
+    border-radius:100px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:27px;
+    padding:25px 72px;
+    text-decoration:none;
+    -webkit-animation:fade 3s forwards;
+    -moz-animation: fade 3s forwards;
+    -o-animation: fade 3s forwards;
+    animation: fade 3s  forwards;
+}
+.myButton:hover {
+    background:linear-gradient(to left, #AA31FD  5%, #8042FE 100%);
+    background-color:#AA31FD ;
+
+}
+/***********************************************************************************/
+
+/*Contenu page contact*/
+
+.titrecontact h1{
+  font-family: "Bebas Neue", sans-serif;
+  text-align: center;
+  font-weight: 400;
+  font-size: 130px;
+  color: var(--couleur_principale);
+  opacity: 0;
+  -webkit-animation:  slide_gauche 1s forwards;
+  -moz-animation: slide_gauche 1s forwards;
+  -o-animation:  slide_gauche 1s forwards;
+  animation: slide_gauche 1s forwards; /* appel de l'animation declaré en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
+}
+
+.listecontact {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 30px;
+    color: white;
+    -webkit-animation:fade 2s forwards;
+    -moz-animation: fade 2s forwards;
+    -o-animation: fade 2s forwards;
+    animation: fade 2s  forwards;
+
+}
+
+.listecontact div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.listecontact img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+
+.feedback-input:focus { border:2px solid white; }
+
+textarea {
+    height: 150px;
+    line-height: 150%;
+    resize:vertical;
+}
+
+[type="submit"] {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    width: 100%;
+    background: var(--couleur_principale);
+    border-radius:5px;
+    border:0;
+    cursor:pointer;
+    color:white;
+    font-size:24px;
+    padding-top:10px;
+    padding-bottom:10px;
+    transition: all 0.3s;
+    margin-top:-4px;
+    font-weight:700;
+}
+[type="submit"]:hover { background: darkorchid; }
+
+.contact-page h2{
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    color: white;
+    font-size:35px;
+    padding-bottom: 20px;
+    text-align: center;
+
+}
+.contact-page {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 50px 10%;
+    flex-wrap: wrap;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 250px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+form {
+    max-width:420px;
+    padding-top: 20px;
+    -webkit-animation:fade 2s forwards;
+    -moz-animation: fade 2s forwards;
+    -o-animation: fade 2s forwards;
+    animation: fade 2s  forwards;
+}
+
+.infoform {
+    color:white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight:500;
+    font-size: 18px;
+    border-radius: 5px;
+    line-height: 22px;
+    background-color: transparent;
+    border:2px solid white;
+    transition: all 0.3s;
+    padding: 13px;
+    margin-bottom: 15px;
+    width:100%;
+    box-sizing: border-box;
+    outline:0;
+}
+
+
+
+/***********************************************************************************/
+
+
+
+
+/*Contenu page projets*/
+
+.pro h1 {
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 130px;
+    color: var(--couleur_principale);
+    opacity: 0;
+    -webkit-animation: slide_gauche 1s forwards;
+    -moz-animation: slide_gauche 1s forwards;
+    -o-animation: slide_gauche 1s forwards;
+    animation: slide_gauche 1s forwards; /* appel de l'animation declarer en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
+
+}
+
+.projets {
+    animation: fade 1.5s forwards;
+}
+
+
+.projets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+    padding-bottom: 80px;
+    padding-top: 30px;
+}
+
+.projet-card {
+    width: 500px;
+    background-color: white;
+    overflow: hidden;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.projet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(171, 25, 255, 0.5);
+}
+
+.projet-image img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.projet-info {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.projet-info h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.projet-tech {
+    display: flex;
+    gap: 10px;
+}
+
+.projet-tech img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.projet-date {
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    color: var(--couleur_principale);
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+
+/***********************************************************************************/
+
+
+/************************Projets******************/
+
+.portfolio h1{
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 130px;
+    color: var(--couleur_principale);
+    opacity: 0;
+    -webkit-animation: slide_gauche 1s forwards;
+    -moz-animation: slide_gauche 1s forwards;
+    -o-animation: slide_gauche 1s forwards;
+    animation: slide_gauche 1s forwards; /* appel de l'animation declarer en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
+
+}
+.infoprojets{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    padding-bottom: 80px;
+    padding-top: 30px;
+    background-color: white;
+}
+.projets {
+    text-align: center;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.projets h1 {
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 130px;
+    color: var(--couleur_principale);
+    opacity: 0;
+    padding-bottom: 50px;
+    -webkit-animation:  slide_gauche 1s forwards;
+    -moz-animation: slide_gauche 1s forwards;
+    -o-animation:  slide_gauche 1s forwards;
+    animation: slide_gauche 1s forwards; /* appel de l'animation declaré en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
+}
+.projets h3 {
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 60px;
+    padding-bottom: 30px;
+    color: var(--couleur_principale);
+}
+
+.projets .liens {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+}
+
+.projets .liens a {
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+
+.projets .liens a:hover {
+    color: var(--couleur_principale);
+}
+
+.projets .galerie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.projets .galerie img {
+    width: 80%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    -webkit-animation:fade 2s forwards;
+    -moz-animation: fade 2s forwards;
+    -o-animation: fade 2s forwards;
+    animation: fade 2s  forwards;
+}
+.projetpres {
+    width: 100%;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.projetpres h2 {
+    width: 80%;
+    max-width: 900px; /* même largeur que les images */
+    margin: 0 auto; /* centre horizontalement */
+    text-align: justify;
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+    color: var(--couleur_secondaire);
+    animation: fade 2s forwards;
+}
+
+.fleche {
+    display: block;
+    margin: 30px auto; /* centre horizontalement et ajoute un peu d'espace */
+    width: 60px; /* réduit la taille */
+    animation: bounce 2s infinite; /* lance l’animation */
+}
+
+
+
+/***********************************************************************************/
+
+/************************Competences******************/
+.titrecompet h1 {
+    font-family: "Bebas Neue", sans-serif;
+    text-align: center;
+    font-weight: 400;
+    font-size: 130px;
+    color: var(--couleur_principale);
+    opacity: 0;
+    -webkit-animation: slide_gauche 1s forwards;
+    -moz-animation: slide_gauche 1s forwards;
+    -o-animation: slide_gauche 1s forwards;
+    animation: slide_gauche 1s forwards; /* appel de l'animation declarer en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
+
+}
+.carousel-container {
+    width: 90%;
+    max-width: 1100px;
+    position: relative;
+    perspective: 2000px;
+    padding: 7rem 0;
+    z-index: 10;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.75s cubic-bezier(0.21, 0.61, 0.35, 1);
+    transform-style: preserve-3d;
+}
+
+.carousel-card {
+    min-width: 320px;
+    max-width: 320px;
+    margin: 0 25px;
+    background: linear-gradient(
+            135deg,
+            rgba(30, 41, 59, 0.85),
+            rgba(15, 23, 42, 0.9)
+    );
+    border-radius: 1.2rem;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.2);
+    transition: all 0.6s cubic-bezier(0.21, 0.61, 0.35, 1);
+    transform-origin: center center;
+    position: relative;
+    border: 1px solid rgba(94, 234, 212, 0.2);
+}
+
+
+.carousel-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+            45deg,
+            transparent 0%,
+            var(--neon-blue) 25%,
+            var(--neon-green) 50%,
+            var(--neon-pink) 75%,
+            transparent 100%
+    );
+    z-index: -1;
+    border-radius: 1.3rem;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: borderGlow 6s linear infinite;
+}
+
+
+
+.carousel-card.is-active::before {
+    opacity: 1;
+    background-size: 300% 300%;
+}
+
+.carousel-card:not(.is-active) {
+    transform: scale(0.8) rotateY(35deg) translateZ(-100px);
+    opacity: 0.45;
+    filter: saturate(0.6) brightness(0.7);
+}
+
+.carousel-card.is-prev {
+    transform-origin: right center;
+    transform: scale(0.75) rotateY(45deg) translateX(-80px) translateZ(-150px);
+}
+
+.carousel-card.is-next {
+    transform-origin: left center;
+    transform: scale(0.75) rotateY(-45deg) translateX(80px) translateZ(-150px);
+}
+
+.carousel-card.is-active {
+    transform: scale(1) rotateY(0) translateZ(0);
+    opacity: 1;
+    z-index: 20;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px var(--glow-primary),
+    inset 0 0 20px rgba(56, 189, 248, 0.1);
+    filter: saturate(1.2) brightness(1.1);
+}
+
+.card-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(94, 234, 212, 0.3);
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.5s ease;
+}
+
+.carousel-card.is-active .card-image {
+    transform: scale(1.05);
+}
+
+/* HUD overlay effect on images */
+.card-image-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(120deg, rgba(56, 189, 248, 0.1), transparent 70%),
+    radial-gradient(circle at 80% 20%, rgba(94, 234, 212, 0.15), transparent 50%);
+    pointer-events: none;
+}
+
+/* Scan line effect */
+.card-image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+            0deg,
+            rgba(6, 182, 212, 0.05) 0px,
+            rgba(6, 182, 212, 0.05) 1px,
+            transparent 1px,
+            transparent 4px
+    );
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 5;
+}
+
+.card-content {
+    padding: 1.75rem;
+    color: #f1f5f9;
+}
+
+.card-title {
+    font-family: "Orbitron", sans-serif;
+    margin-bottom: 0.75rem;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Text glow effect */
+.card-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: transparent;
+    -webkit-text-stroke: 0.5px;
+    filter: blur(3px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-card.is-active .card-title::after {
+    opacity: 0.8;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(241, 245, 249, 0.8);
+    font-weight: 300;
+}
+
+
+
+.progress-value {
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-green));
+    border-radius: 4px;
+    width: 75%;
+}
+
+.card-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    color: rgba(241, 245, 249, 0.6);
+}
+
+/* Futuristic navigation buttons */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(12, 74, 110, 0.3);
+    color: #38bdf8;
+    border: 1px solid rgba(14, 165, 233, 0.4);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+.carousel-button:hover {
+    background-color: rgba(14, 165, 233, 0.3);
+    color: #e0f2fe;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.carousel-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Button hover effect */
+.carousel-button::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(circle, var(--neon-blue), transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-button:hover::before {
+    opacity: 0.7;
+    animation: pulseGlow 2s infinite;
+}
+
+
+.carousel-button.prev {
+    left: -24px;
+}
+
+.carousel-button.next {
+    right: -24px;
+}
+
+/* Indicator dots */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.indicator {
+    width: 24px;
+    height: 4px;
+    background: rgba(56, 189, 248, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+
+.carousel-card.is-active:hover .tech-details {
+    transform: translateY(0);
+}
+
+.tech-tag {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 4px;
+    color: #7dd3fc;
+}
+
+.is-far-next {
+    transform: scale(0.8) rotateY(-45deg) translateZ(-100px) !important;
+}
+
+
+.carouselbody{
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    position: relative;
+}
+/***********************************************************************************/
+
+
+/* ========== MOBILE========== */
+
+/* ========== INDEX ========== */
+
+@media screen and (max-width: 1024px) {
+    .hero h1 {
+        font-size: 90px;
+    }
+    .hero h2 {
+        font-size: 35px;
+    }
+    .hero h3 {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        width: 90%;
+        margin: auto;
+        padding-top: 100px;
+    }
+
+    .hero h1 {
+        font-size: 70px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .hero h3 {
+        font-size: 30px;
+    }
+
+    header {
+        padding-top: 30px;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    header .credit a {
+        font-size: 30px;
+    }
+    header .right{
+        padding-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 45px;
+    }
+    .hero h2 {
+        font-size: 22px;
+    }
+    .hero h3 {
+        font-size: 25px;
+    }
+}
+
+
+
+/* ========== PAGE À PROPOS  ========== */
+@media screen and (max-width: 1850px) {
+    .present h1 {
+        font-size: 90px;
+    }
+    .present h2 {
+        font-size: 22px;
+    }
+    .avatar img {
+        width: 68%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .present h1 {
+        font-size: 90px;
+    }
+    .present h2 {
+        font-size: 22px;
+    }
+    .avatar img {
+        width: 90%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .presentation {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .present h1 {
+        font-size: 70px;
+    }
+    .col{
+        padding-left: 0px;
+
+    }
+    .present h2 {
+        font-size: 18px;
+    }
+
+    .avatar img {
+        width: 50%;
+        margin-top: 20px;
+    }
+
+    .myButton {
+        font-size: 20px;
+        padding: 15px 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .present h1 {
+        font-size: 50px;
+    }
+
+    .col{
+        padding-left:0px;
+    }
+    .present h2 {
+        font-size: 16px;
+    }
+    .avatar img {
+        width: 50%;
+    }
+}
+
+
+
+
+/* ========== PAGE PROJETS========== */
+
+@media screen and (max-width: 1024px) {
+    .pro h1 {
+        font-size: 90px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .pro h1 {
+        font-size: 70px;
+    }
+    .projets h1 {
+        font-size: 60px;
+
+    }
+
+    .projet-card {
+        width: 85%;
+    }
+    .projetpres h2{
+        text-align: start;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .pro h1 {
+        font-size: 50px;
+    }
+}
+
+
+
+
+/* ========== PAGE CONTACT ========== */
+
+
+
+@media screen and (max-width: 768px) {
+    .titrecontact h1 {
+        font-size: 90px;
+    }
+
+    .listecontact {
+        font-size: 20px;
+    }
+
+    .listecontact img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .listecontact {
+        font-size: 18px;
+        margin-left: 0;
+        align-items: center;
+    }
+
+    .listecontact div {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .titrecontact h1 {
+        font-size: 50px;
+    }
+
+    .listecontact img {
+        width: 60px;
+        height: 60px;
+    }
+}
+/* =================================================================== */
+@media screen and (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        height: 100%;
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-attachment: scroll;
+        background-size: cover;
+        background-position: center;
+        transform: none;
+    }
+}
+/* =================================================================== */
+/* Competences responsive*/
+@media (max-width: 768px) {
+    .titrecompet h1{
+        font-size: 70px;
+    }
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-button.prev {
+        left: 5px;
+    }
+
+    .carousel-button.next {
+        right: 5px;
+    }
+
+    .carousel-card {
+        min-width: 260px;
+        max-width: 260px;
+        margin: 0 15px;
+    }
+
+    .carousel-card:not(.is-active) {
+        transform: scale(0.85) rotateY(25deg);
+    }
+
+    .carousel-card.is-prev {
+        transform: scale(0.8) rotateY(30deg) translateX(-40px);
+    }
+
+    .carousel-card.is-next {
+        transform: scale(0.8) rotateY(-30deg) translateX(40px);
+    }
+
+    .card-image-container {
+        height: 160px;
+    }
+
+}
+@media screen and (max-width: 480px) {
+    .titrecompet h1 {
+        font-size: 50px;
+    }
+}
+/* =================================================================== */
+
+
+
