@@ -261,6 +261,7 @@ main {
     }
 }
 
+
 .bgfadeOut {
   -webkit-animation: bgfadeOut 1s forwards;
   -moz-animation: bgfadeOut 1s forwards;
@@ -377,20 +378,18 @@ nav ul li a:hover {
   animation: 1s apparition 1s forwards;
 }
 
-/***********************************************************************************/
 /*Contenu de la page veille*/
 .veillete h1{
-    position:absolute;
-    top: 200px;
-    left: 580px;
     font-family: "Bebas Neue", sans-serif;
+    text-align: center;
     font-weight: 400;
     font-size: 130px;
-    color:var(--couleur_principale);
-    -webkit-animation: slide_gauche 1.5s forwards;
-    -moz-animation: slide_gauche 1.5s forwards;
-    -o-animation: slide_gauche 1.5s forwards;
-    animation: slide_gauche 1.5s  forwards;
+    color: var(--couleur_principale);
+    opacity: 0;
+    -webkit-animation:  slide_gauche 1s forwards;
+    -moz-animation: slide_gauche 1s forwards;
+    -o-animation:  slide_gauche 1s forwards;
+    animation: slide_gauche 1s forwards; /* appel de l'animation declaré en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
 }
 
 
@@ -429,10 +428,45 @@ nav ul li a:hover {
 /***********************************************************************************/
 /*Contenu de la page tableau*/
 
-.tableau h1{
+.boutont {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+
+.tableau {
+    margin-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tableau table {
+    background-color: white;
+    border-collapse: collapse;
+    margin: 0 auto;
+
+}
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+    overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+    font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+
+.tableau1 h1{
     font-family: "Bebas Neue", sans-serif;
     text-align: center;
-    margin-top: -100px;
     font-weight: 400;
     font-size: 130px;
     color: var(--couleur_principale);
@@ -440,8 +474,7 @@ nav ul li a:hover {
     -webkit-animation:  slide_gauche 1s forwards;
     -moz-animation: slide_gauche 1s forwards;
     -o-animation:  slide_gauche 1s forwards;
-    animation: slide_gauche 1s forwards; /* appel de l'animation declarer en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
-
+    animation: slide_gauche 1s forwards; /* appel de l'animation declaré en dessous (les 3 lignes au dessus sont juste utilisées sur les anciens navigateurs)*/
 }
 
 .imagtab img{
@@ -455,6 +488,17 @@ nav ul li a:hover {
 
     text-align: center;
 
+}
+.dot {
+    height: 14px;
+    width: 14px;
+    background-color: #4CAF50;
+    display: inline-block;
+    border-radius: 50%;
+    margin: auto;
+}
+.tg-center {
+    text-align: center;
 }
 
 /***********************************************************************************/
@@ -1266,8 +1310,47 @@ form {
     }
 }
 
+/* ========== PAGE TABLEAU  ========== */
+@media screen and (max-width: 600px) {
+    .tableau1 h1 {
+        font-size: 90px;
+    }
+    .tableau table td,
+    .tableau table th {
+        font-size: 12px;
+        padding: 5px;
+    }
+    .boutont{
+        padding-left: 20px;
+        padding-right: 20px;
 
+    }
+    .tableau{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .tableau1 h1 {
+        font-size: 90px;
+    }
 
+    .tableau {
+        margin-left: 80px;
+        margin-right: 80px;
+    }
+}
+
+    @media screen and (max-width: 480px) {
+        .tableau1 h1 {
+            font-size: 50px;
+        }
+
+        .tableau {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
 /* ========== PAGE À PROPOS  ========== */
 @media screen and (max-width: 1850px) {
     .present h1 {
