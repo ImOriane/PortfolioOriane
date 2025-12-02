@@ -379,6 +379,11 @@ nav ul li a:hover {
 }
 
 /*Contenu de la page veille*/
+.veillete{
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+}
 .veillete h1{
     font-family: "Bebas Neue", sans-serif;
     text-align: center;
@@ -399,29 +404,44 @@ nav ul li a:hover {
     font-weight: 400;
     font-size: 50px;
     color: var(--couleur_principale);
-    opacity: 0;
-    animation: 1s apparition 1s forwards;
+    -webkit-animation:fade 2s forwards;
+    -moz-animation: fade 2s forwards;
+    -o-animation: fade 2s forwards;
+    animation: fade 2s  forwards;
 
 }
 
-.veillete h4{
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 50px;
-    color: var(--couleur_principale);
-    opacity: 0;
-    animation: 1s apparition 1s forwards;
 
-}
 .veillete h3{
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
-    font-size: 50px;
-    color: var(--couleur_secondaire);
-    opacity: 0;
-    animation: 1s apparition 1s forwards;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+    color:var(--couleur_secondaire);
+    -webkit-animation:fade 2s forwards;
+    -moz-animation: fade 2s forwards;
+    -o-animation: fade 2s forwards;
+    animation: fade 2s  forwards;
+    text-align: justify;
+
 
 }
+.image-gallery {
+    max-width: 800px;    
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.image-gallery img {
+    display: block;
+    margin: 0 auto 20px auto;
+    max-height: 400px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
 
 
 
