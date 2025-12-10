@@ -380,7 +380,8 @@ nav ul li a:hover {
 
 /*Contenu de la page veille*/
 .veillete {
-    padding: 80px 50px 50px;
+    padding-left: 50px;
+    padding-right: 50px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -938,7 +939,7 @@ nav ul li a:hover {
     text-align: center;
 }
 .resultats-section img {
-    display: block;      
+    display: block;
     margin: 0 auto;
     max-width: 100%;
     height: auto;
