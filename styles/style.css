@@ -733,6 +733,135 @@ nav ul li a:hover {
 }
 
 
+
+
+/* Styles pour les onglets */
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tab-button {
+    padding: 0.8rem 2rem;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(171, 25, 255, 0.35);
+    border-radius: 8px;
+    color: #c7b7ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    font-family: 'Poppins', sans-serif;
+}
+
+.tab-button:hover {
+    border-color: #ab19ff;
+    color: #ab19ff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(171, 25, 255, 0.35);
+}
+
+.tab-button.active {
+    background: linear-gradient(
+            135deg,
+            rgba(171, 25, 255, 0.35),
+            rgba(199, 125, 255, 0.35)
+    );
+    border-color: #ab19ff;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(171, 25, 255, 0.6);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style amélioré pour le tableau */
+.resultats-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(30, 41, 59, 0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.resultats-table thead {
+    background: linear-gradient(
+            135deg,
+            rgba(171, 25, 255, 0.25),
+            rgba(199, 125, 255, 0.25)
+    );
+}
+
+.resultats-table th {
+    padding: 1rem;
+    text-align: left;
+    color: #ab19ff;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(171, 25, 255, 0.35);
+}
+
+.resultats-table td {
+    padding: 1rem;
+    color: #f1f5f9;
+    border-bottom: 1px solid rgba(171, 25, 255, 0.15);
+}
+
+.resultats-table tbody tr:hover {
+    background: rgba(171, 25, 255, 0.12);
+    transition: background 0.3s ease;
+}
+
+.resultats-table a {
+    color: #c77dff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.resultats-table a:hover {
+    color: #ab19ff;
+    text-decoration: underline;
+}
+
+/* Indicateur de chargement */
+.loading {
+    text-align: center;
+    color: #c7b7ff;
+    padding: 2rem;
+}
+
+.loading::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
 /***********************************************************************************/
 /*Contenu de la page tableau*/
 

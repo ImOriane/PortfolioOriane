@@ -142,23 +142,53 @@
                 </div>
             </div>
             <div class="resultats-section">
+                <h2>Résultats de ma veille</h2>
 
-                <h2>Résultats</h2>
-                <table class="resultats-table">
-                    <thead>
-                    <tr>
-                        <th>Titre</th>
-                        <th>Date</th>
-                        <th>Lien</th>
-                    </tr>
-                    </thead>
-                    <tbody id="resultats-body">
-                    <tr>
-                        <td colspan="3">Chargement des résultats...</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                <!-- Onglets -->
+                <div class="tabs-container">
+                    <button class="tab-button active" onclick="switchTab('google-alerts')">
+                        Google Alerts
+                    </button>
+                    <button class="tab-button" onclick="switchTab('feedly')">
+                        Feedly
+                    </button>
+                </div>
+
+                <!-- Contenu Google Alerts -->
+                <div id="google-alerts" class="tab-content active">
+                    <table class="resultats-table">
+                        <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Date</th>
+                            <th>Lien</th>
+                        </tr>
+                        </thead>
+                        <tbody id="google-alerts-body">
+                        <tr>
+                            <td colspan="3" class="loading">Chargement des résultats Google Alerts</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Contenu Feedly -->
+                <div id="feedly" class="tab-content">
+                    <table class="resultats-table">
+                        <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Date</th>
+                            <th>Lien</th>
+                        </tr>
+                        </thead>
+                        <tbody id="feedly-body">
+                        <tr>
+                            <td colspan="3" class="loading">Chargement des résultats Feedly</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
 
         </div>
@@ -171,38 +201,126 @@
 
 
     <script>
-        const GOOGLE_ALERT_RSS = "https://www.google.fr/alerts/feeds/03239663514925791374/18084753195716871112";
 
-        function loadGoogleAlertsTable() {
-            const tbody = document.getElementById("resultats-body");
+        const GOOGLE_ALERT_FEEDS = [
+            "https://www.google.fr/alerts/feeds/03239663514925791374/2739973318825509766",
+            "https://www.google.fr/alerts/feeds/03239663514925791374/2739973318825509766",
+            "https://www.google.fr/alerts/feeds/03239663514925791374/2739973318825509766"
+        ];
 
-            fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(GOOGLE_ALERT_RSS))
-                .then(res => res.json())
-                .then(data => {
-                    tbody.innerHTML = ""; // vide le tableau
+        const FIGMA_FEEDS = [
+            "http://design4users.com/feed/",
+            "http://releases.figma.com/feeds/posts/default?alt=rss",
+            "http://www.toptal.com/designers/blog.rss"
+        ];
 
-                    data.items.slice(0, 5).forEach(item => {
-                        const tr = document.createElement("tr");
-                        tr.innerHTML = `
-                    <td>${item.title}</td>
-                    <td>${new Date(item.pubDate).toLocaleDateString()}</td>
-                    <td><a href="${item.link}" target="_blank">Voir</a></td>
-                `;
-                        tbody.appendChild(tr);
-                    });
-                })
-                .catch(err => {
-                    console.error(err);
-                    tbody.innerHTML = `<tr><td colspan="3">Impossible de charger les résultats.</td></tr>`;
-                });
+        function switchTab(tabName) {
+
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
         }
 
-        // Appel au chargement
-        loadGoogleAlertsTable();
 
-    </script>
+        function loadGoogleAlerts() {
+            const tbody = document.getElementById("google-alerts-body");
 
-    <script>
+            tbody.innerHTML = `<tr><td colspan="3" class="loading">Chargement des alertes Google</td></tr>`;
+
+            const requests = GOOGLE_ALERT_FEEDS.map(url =>
+                fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(url))
+                    .then(res => res.json())
+                    .then(data => data.items || [])
+                    .catch(() => [])
+            );
+
+            Promise.all(requests).then(results => {
+
+                // Fusion de toutes les alertes
+                let allItems = results.flat();
+
+                // Supprimer les doublons basés sur le lien
+                const seenLinks = new Set();
+                allItems = allItems.filter(item => {
+                    if (seenLinks.has(item.link)) return false;
+                    seenLinks.add(item.link);
+                    return true;
+                });
+
+                // Tri du plus récent au plus ancien
+                allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                tbody.innerHTML = "";
+
+                allItems.slice(0, 15).forEach(item => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                <td>${item.title}</td>
+                <td>${new Date(item.pubDate).toLocaleDateString('fr-FR')}</td>
+                <td><a href="${item.link}" target="_blank">Voir →</a></td>
+            `;
+                    tbody.appendChild(tr);
+                });
+
+                if (allItems.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="3">Aucune alerte trouvée.</td></tr>`;
+                }
+            }).catch(err => {
+                console.error(err);
+                tbody.innerHTML = `<tr><td colspan="3">Erreur de chargement.</td></tr>`;
+            });
+        }
+
+
+
+        function loadFeedly() {
+            const tbody = document.getElementById("feedly-body");
+            tbody.innerHTML = `<tr><td colspan="3" class="loading">Chargement des résultats Figma</td></tr>`;
+
+            const requests = FIGMA_FEEDS.map(url =>
+                fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(url))
+                    .then(res => res.json())
+                    .then(data => data.items || [])
+                    .catch(() => [])
+            );
+
+            Promise.all(requests).then(results => {
+
+                // Fusion de tous les flux
+                const allItems = results.flat();
+
+                // Tri par date (du plus récent au plus ancien)
+                allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                tbody.innerHTML = "";
+
+                allItems.slice(0, 15).forEach(item => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                <td>${item.title}</td>
+                <td>${new Date(item.pubDate).toLocaleDateString('fr-FR')}</td>
+                <td><a href="${item.link}" target="_blank">Voir →</a></td>
+            `;
+                    tbody.appendChild(tr);
+                });
+
+                if (allItems.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="3">Aucun résultat trouvé.</td></tr>`;
+                }
+            });
+        }
+
+
+        loadGoogleAlerts();
+        loadFeedly();
+
+
         const galleryImages = document.querySelectorAll('.gallery-item img');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -219,16 +337,12 @@
             lightbox.style.display = 'none';
         });
 
-
         lightbox.addEventListener('click', (e) => {
             if(e.target === lightbox){
                 lightbox.style.display = 'none';
             }
         });
     </script>
-
-  </body>
-  <script>
     fadeBackground(document.referrer, "tableau.html");
   </script>
 </html>
