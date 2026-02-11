@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Oriane</title>
+    <link rel="shortcut icon" type="png" href="documents/favicon.png"/>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/cssPages.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
+    <script src="../script/script.js"></script>
+</head>
+
+<body>
+<div class="bg" id="bg"></div>
+
+<header>
+    <div class="credit left"><a href="../index.html">FOY ORIANE</a></div>
+    <nav class="right">
+        <ul>
+            <li>
+                <a href="../projets.html"
+                ><span class="numerotation">1.</span> Projets</a>
+            </li>
+            <li>
+                <a href="../apropos.html"
+                ><span class="numerotation">2.</span> À propos</a>
+            </li>
+            <li>
+                <a href="../competences.html"
+                ><span class="numerotation">3.</span> Mes compétences</a>
+            </li>
+            <li>
+                <a href="../contact.html"
+                ><span class="numerotation">4.</span> Contact</a>
+            </li>
+            <li>
+                <a href="../veille.html"
+                ><span class="numerotation">5.</span> Veille</a>
+            </li>
+            <li>
+                <a href="../tableau.html"
+                ><span class="numerotation">6.</span> Tableau</a>
+            </li>
+
+        </ul>
+    </nav>
+    <hr/>
+</header>
+
+<div class="projets">
+    <h1>CrawlService</h1>
+    <h3>(En cours)</h3>
+
+    <div class="liens">
+        <a href="https://github.com/ImOriane/CrawlService" target="_blank">Voir le code</a>
+        <a>Documentation à venir...</a>
+    </div>
+    <div class="projetpres">
+        <h2>Dans le cadre de mon stage dans l'entreprise Ekino, j’ai du développer une application web en Laravel permettant d’analyser les performances SEO et GEO d’un site à partir de son URL.<br><br>
+            Le problème identifié était le manque d’outil centralisé et simple d’utilisation pour détecter rapidement les freins techniques impactant le référencement et la visibilité locale d’un site web.
+            J’ai donc conçu une solution capable de crawler automatiquement un site, de collecter des métriques clés (structure des pages, balises, éléments SEO/GEO) et d’analyser ces données afin d’identifier les points d’amélioration.<br><br>
+            Les résultats sont présentés dans un tableau de bord clair et structuré, offrant une vue globale des performances ainsi qu’un accès détaillé aux problématiques détectées pour chaque page.<br><br>
+            Ce projet m’a permis de renforcer mes compétences en Laravel, gestion de bases de données, traitement automatisé de données et conception d’interfaces orientées analyse.<h2>
+
+    </div>
+    <img src="../documents/fleche.png" alt="fleche" class="fleche">
+    <div class="galerie">
+    </div>
+</div>
+
+<script>
+    fadeBackground(document.referrer, "projets.html");
+</script>
+</body>
+</html>
